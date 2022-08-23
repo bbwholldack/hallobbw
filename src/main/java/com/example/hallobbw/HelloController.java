@@ -20,7 +20,13 @@ public class HelloController {
     @FXML
     protected void onGetAnimalButtonClick() {
         Mapper mapper = new Mapper();
-        Animal myAnimal = mapper.getAnimalById(1); // TODO: get ID from GUI input
-        String asciiPic = myAnimal.getAsciiPic();
-        welcomeText.setText(asciiPic);}
+
+        // Fange ein Tier
+        int myAnimalId = 1; // TODO: diese ID möchten wir später in der GUI eingeben können
+        Animal myAnimal = mapper.getAnimalById(myAnimalId);
+
+        // Schreibe das Ascii-Bild in die GUI
+        welcomeText.setStyle("-fx-font-family: 'monospaced'");
+        welcomeText.setText(myAnimal.getAsciiPic());
+    }
 }

@@ -1,5 +1,8 @@
 package com.example.hallobbw;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class Mapper {
     private DBConnector dbConnector;
 
@@ -9,12 +12,20 @@ public class Mapper {
     }
 
     public Animal getAnimalById(int id) {
-        DBConnector dbConnector = new DBConnector();
-        dbConnector.connect();
+        ResultSet result = this.dbConnector.receiveAnimalDataFromTable(id);
 
-        String result = this.dbConnector.receiveDataFromTable("animals", id);
-        String animalData[]  = result.split(";", 6);
-        return new Animal(id, animalData[0], animalData[1]);
+        try {
+            result.next();
+            String name = result.getString("name");
+            String picture = result.getString("picture");
+            return new Animal(1, name, picture);
+        }
+        catch(SQLException ex) {
+            System.out.println(ex);
+        }
+
+        // TODO: hierhin sollten wir nie kommen
+        return null;
     }
 
 }
