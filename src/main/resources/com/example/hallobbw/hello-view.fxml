@@ -13,6 +13,4 @@
 
     <Label fx:id="welcomeText"/>
     <Button text="Hello!" onAction="#onHelloButtonClick"/>
-    <Button text="World!" onAction="#onWorldButtonClick"/>
-    <Button text="Get Animal!" onAction="#onGetAnimalButtonClick"/>
 </VBox>
